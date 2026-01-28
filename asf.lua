@@ -2,7 +2,7 @@ repeat wait() until game:IsLoaded()
 local originalName = game.Players.LocalPlayer.Name
 task.spawn(function()
     game.Players.LocalPlayer.Name = "grr"
-    task.wait(2)
+    task.wait(3)
     game.Players.LocalPlayer.Name = originalName
 end)
 local token = "i1r81cBdixCPJObWny7+WhnHHRXJzyvHygX8VyuW1lnLA6BdiyvntuVV/EuBYOvV18DDxso5mxn+OR777Pvsqc53j1vCzuDb/HnPAhKjfxTdcb2m3xXbvyCW2u5jggBLqHX5J3yWqEOPsH=VV8s03so03gsVh3CV1F7jScwpm1KmJubuncn6rhvVf/uepoMjyboBkyTbrsC7EhBdjoOnTutH1cCJMOy0MuTVOu27iFsB=fnW74TuSOIZsQO+2su5hE7wNyZHGxXDcONCkxCmY2B0t4OPEcBdWHXHjuIuJcZj+xXVHbCrfssBy/Tbk2B01PrwXh4FKQNWwubjX2swdh4w/xOLcyO5dbVbUoKbJlTc6ReL46X0q3SuzEuCY/Ku18KdPgTHIHr7uPnV7PrPMcwdiso7bc50coMHTxuWq8CeD6K5Kb7WTsZmPsKc4/pZBQCVYxC5Af7CyhtPD8o6xgvHhHOcZynWcs7BMcb5cFwLnsZ7QOTcUgCc1bNsyolmf15mZfvbfPuuist8M6KBn1BWL2TV4KTbZsosFFuaa"
