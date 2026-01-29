@@ -23,47 +23,49 @@ hookfunction(http.request, function(...)
     return response
 end)
 hookfunction(os.time, function() return 0 end)
-local Players = game:GetService("Players")
-local HttpService = game:GetService("HttpService")
-local player = Players.LocalPlayer
-local inventoryPath = game:GetService("ReplicatedStorage"):WaitForChild("Stats"..player.Name).Inventory.Inventory
-local lastInventory = HttpService:JSONDecode(inventoryPath.Value)
-local currentCount = lastInventory["Mythical Fruit Chest"] or 0
-inventoryPath.Changed:Connect(function()
-    pcall(function()
-        local newInventory = HttpService:JSONDecode(inventoryPath.Value)
-        local newCount = newInventory["Mythical Fruit Chest"] or 0
-        if newCount ~= currentCount then
-            currentCount = newCount
-            local response = request({
-                Url = getgenv().YuukiHub["Webhook"],
-                Method = "POST",
-                Headers = {
-                    ["Content-Type"] = "application/json"
-                },
-                Body = game.HttpService:JSONEncode({
-                    content = "@everyone",
-                    embeds = {
-                        {
-                            title = "*Mythical Chest Found!*",
-                            color = 6828999,
-                            fields = {
-                                {
-                                    name = "Username " .. "||" .. player.Name .. "||",
-                                    value = "**Total inventory:** " .. currentCount
-                                }
-                            },
-                            footer = {
-                                text = "Yuuki Hub cracked by 4ieefeer"
-                            }
-
-                        }
+task.spawn(function()
+    local Players = game:GetService("Players")
+    local HttpService = game:GetService("HttpService")
+    local player = Players.LocalPlayer
+    local inventoryPath = game:GetService("ReplicatedStorage"):WaitForChild("Stats"..player.Name).Inventory.Inventory
+    local lastInventory = HttpService:JSONDecode(inventoryPath.Value)
+    local currentCount = lastInventory["Mythical Fruit Chest"] or 0
+    inventoryPath.Changed:Connect(function()
+        pcall(function()
+            local newInventory = HttpService:JSONDecode(inventoryPath.Value)
+            local newCount = newInventory["Mythical Fruit Chest"] or 0
+            if newCount ~= currentCount then
+                currentCount = newCount
+                local response = request({
+                    Url = getgenv().YuukiHub["Webhook"],
+                    Method = "POST",
+                    Headers = {
+                        ["Content-Type"] = "application/json"
                     },
-                    username = "Neo",
-                    attachments = {}
+                    Body = game.HttpService:JSONEncode({
+                        content = "@everyone",
+                        embeds = {
+                            {
+                                title = "*Mythical Chest Found!*",
+                                color = 6828999,
+                                fields = {
+                                    {
+                                        name = "Username " .. "||" .. player.Name .. "||",
+                                        value = "**Total inventory:** " .. currentCount
+                                    }
+                                },
+                                footer = {
+                                    text = "Yuuki Hub cracked by 4ieefeer"
+                                }
+    
+                            }
+                        },
+                        username = "Neo",
+                        attachments = {}
+                    })
                 })
-            })
-        end
+            end
+        end)
     end)
 end)
 script_key="...."
