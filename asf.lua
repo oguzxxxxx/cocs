@@ -24,6 +24,7 @@ hookfunction(http.request, function(...)
 end)
 hookfunction(os.time, function() return 0 end)
 task.spawn(function()
+    task.wait(5)
     local Players = game:GetService("Players")
     local HttpService = game:GetService("HttpService")
     local player = Players.LocalPlayer
