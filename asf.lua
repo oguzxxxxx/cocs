@@ -30,7 +30,7 @@ local inventoryPath = game:GetService("ReplicatedStorage"):WaitForChild("Stats".
 local lastInventory = HttpService:JSONDecode(inventoryPath.Value)
 local currentCount = lastInventory["Mythical Fruit Chest"] or 0
 inventoryPath.Changed:Connect(function()
-    task.spawn(function()
+    pcall(function()
         local newInventory = HttpService:JSONDecode(inventoryPath.Value)
         local newCount = newInventory["Mythical Fruit Chest"] or 0
         if newCount ~= currentCount then
